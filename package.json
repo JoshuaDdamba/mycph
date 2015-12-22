@@ -1,0 +1,17 @@
+{
+  "name": "mycph",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "gulp-live-server": "0.0.29",
+    "instagram-node": "^0.5.8"
+  }
+}
