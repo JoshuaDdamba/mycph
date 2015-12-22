@@ -18,6 +18,6 @@ NB: Remember to add the configuration `./config/default.json`, with your instagr
 
 
 ## run application
-    1. Compile the client interface: gulp client
-    2. Run the server: gulp server
+1. Compile the client interface: `gulp client`
+2. Run the server: `gulp server`
 
