@@ -48,8 +48,13 @@ gulp.task('client:js', function () {
       .pipe(gulp.dest('./build/js'))
 });
 
+gulp.task('copyLeafletCSS', function () {
+  gulp.src(['./node_modules/leaflet/dist/leaflet.css'])
+      .pipe(gulp.dest('./build/styles'));
+});
+
 gulp.task('client:styles', function () {
-  gulp.src(['./src/client/styles/base.styl'])
+  gulp.src(['copyLeafletCSS', './src/client/styles/base.styl'])
       .pipe(stylus())
       .pipe(gulp.dest('./build/styles'));
 });

@@ -15,7 +15,21 @@ grams.use({
 
 
 app.get('/grams',function(req,res){
-  grams.media_search(55.676023,12.569031,function(err, medias, remaining, limit) {
+  console.log("lat", req.query.lat);
+  console.log("lng", req.query.lng);
+
+  var lat = req.query.lat;
+  var lng = req.query.lng;
+  
+  console.log(lat);
+  //lat = 55.6903587538032;
+  //lng = 12.54364013671875;
+  //grams.media_search(55.676023,12.569031,function(err, medias, remaining, limit) {
+  grams.media_search(Number(lat), Number(lng), function(err, medias, remaining, limit) {
+      if(err) {
+        throw new Error(err);
+        res.send(err);
+      }
       res.send(medias);
   });
 });

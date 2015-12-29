@@ -1,5 +1,5 @@
-var domready = require('domready');
 var mapService = require('./map');
+var gramService = require('./gram');
 var service = {};
 var $app;
 
@@ -9,12 +9,28 @@ function makeMapBox() {
   $map.id = "map";
   
   $app.appendChild($map);
+
+  mapService.buildMap();
   return $map;
 }
 
 function run () {
+  
+  gramService.onmediasready= function (medias) {
+    medias.forEach(function(media) {
+      if(media.location) {
+        console.log(media);
+        mapService.addMarker(
+          media.location.latitude, 
+          media.location.longitude,
+          media.images.thumbnail.url);
+      }
+    })
+  }
+
+  mapService.clickHandler = gramService.fetchGrams;
+
   var $map = makeMapBox();
-  mapService.buildMap($map);
 }
 
 var mycph = window.mycph || {};
@@ -52,7 +68,7 @@ window.mycph = mycph;
 });
 
 var $app;*/
-service.getDataFromServer = function (callback) {
+/*service.getDataFromServer = function (callback) {
 	var xhttp = new window.XMLHttpRequest();
 
 	xhttp.open("GET", "./grams", true);
@@ -88,8 +104,4 @@ service.renderPage = function (medias) {
   });
 	$mycph.appendChild($medias);
 
-}
-
-var mycph = service;
-
-mycph.getDataFromServer(mycph.renderPage);
+}*/

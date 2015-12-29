@@ -6,10 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "browserify-shim": {
+    "L": "global:L"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "browserify": "^12.0.1",
+    "browserify-shim": "^3.8.11",
     "config": "^1.17.1",
     "express": "^4.13.3",
     "gulp": "^3.9.0",
