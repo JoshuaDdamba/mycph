@@ -7,9 +7,27 @@ var gulp       = require('gulp');
 var gutil      = require('gulp-util')
 var source     = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
+var stylus     = require('gulp-stylus');
 var uglify     = require('gulp-uglify');
 
-var b          = browserify();
+var packageJson = require('./package.json');
+var dependencies = Object.keys(packageJson && packageJson.dependencies || {});
+
+gulp.task('client:vendors', function () {
+
+  var b          = browserify();
+  
+  return b
+      .require(dependencies)
+      .bundle()
+      .pipe(source('vendors.js'))
+      .pipe(buffer())
+      .pipe(sourcemaps.init({loadMaps: true}))
+         .pipe(uglify())
+         .on('error', gutil.log)
+      .pipe(sourcemaps.write('./'))
+      .pipe(gulp.dest('./build/js'));
+});
 
 gulp.task('client:js', function () {
   
@@ -19,6 +37,7 @@ gulp.task('client:js', function () {
   });
 
   return b
+      .external(dependencies)
       .bundle()
       .pipe(source('mycph.js'))
       .pipe(buffer())
@@ -29,12 +48,13 @@ gulp.task('client:js', function () {
       .pipe(gulp.dest('./build/js'))
 });
 
-gulp.task('client:html', function () {
-  gulp.src(['./src/client/index.html'])
-  .pipe(gulp.dest('./build'));
+gulp.task('client:styles', function () {
+  gulp.src(['./src/client/styles/base.styl'])
+      .pipe(stylus())
+      .pipe(gulp.dest('./build/styles'));
 });
 
-gulp.task('client', ['client:html', 'client:js']);
+gulp.task('client', ['client:styles', 'client:js']);
 
 gulp.task('server', function () {
   var server = gls.new('./src/server/express.js');

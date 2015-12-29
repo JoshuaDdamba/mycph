@@ -22,7 +22,11 @@ app.get('/grams',function(req,res){
 
 app.use('/build', express.static(__dirname + '/../../build'));
 
-app.use('/', express.static(__dirname + '/../../build'));
+app.use('/', function (req, res, next) {
+  res.sendFile(__dirname + '/views/index.html');
+});
+
+//app.use('/', express.static(__dirname + '/../../build'));
 
 app.listen(3001, function(err) {
   if(err){

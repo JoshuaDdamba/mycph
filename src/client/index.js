@@ -1,7 +1,57 @@
-console.log("myCph is ready to rock");
-
+var domready = require('domready');
+var mapService = require('./map');
 var service = {};
+var $app;
 
+function makeMapBox() {
+  
+  var $map = document.createElement("div");
+  $map.id = "map";
+  
+  $app.appendChild($map);
+  return $map;
+}
+
+function run () {
+  var $map = makeMapBox();
+  mapService.buildMap($map);
+}
+
+var mycph = window.mycph || {};
+
+mycph.init = function($container) {
+  $app = $container;
+  $app.innerHTML = "";
+}
+
+mycph.run = function () {
+  if(typeof $app === 'undefined') 
+    throw new Error("the app must provide a DOM container");
+
+  run();
+}
+
+window.mycph = mycph;
+
+/*domready(function () {
+  var myc = {};
+
+  myc.init = function ($container) {
+    if(typeof $container === 'undefined')
+      throw new Error("you must provide a container element for the application");
+
+    $app = $container;
+  }
+
+  myc.run = function () {
+    run();
+  }
+
+  exports.myc = myc;
+
+});
+
+var $app;*/
 service.getDataFromServer = function (callback) {
 	var xhttp = new window.XMLHttpRequest();
 
