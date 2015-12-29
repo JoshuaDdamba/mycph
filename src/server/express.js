@@ -13,13 +13,16 @@ grams.use({
  client_secret: gramsConfig.client_secret
 });
 
-app.use(express.static('./build'));
 
 app.get('/grams',function(req,res){
   grams.media_search(55.676023,12.569031,function(err, medias, remaining, limit) {
       res.send(medias);
   });
 });
+
+app.use('/build', express.static(__dirname + '/../../build'));
+
+app.use('/', express.static(__dirname + '/../../build'));
 
 app.listen(3001, function(err) {
   if(err){
@@ -28,3 +31,5 @@ app.listen(3001, function(err) {
      console.log("Express server listening at port "+ port);
   }
 });
+
+
