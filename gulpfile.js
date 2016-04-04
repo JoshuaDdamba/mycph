@@ -15,6 +15,15 @@ var uglify     = require('gulp-uglify');
 var packageJson = require('./package.json');
 var dependencies = Object.keys(packageJson && packageJson.dependencies || {});
 
+gulp.task('serveprod', function() {
+  connect.server({
+    root: './mycph',
+    port: process.env.PORT || 3001, // localhost:5000
+    livereload: false
+  });
+});
+
+
 gulp.task('client:vendors', function () {
 
   var b          = browserify();
@@ -62,6 +71,7 @@ gulp.task('client:styles', function () {
 });
 
 gulp.task('client', ['client:styles', 'client:js']);
+
 
 
 /*gulp.task('clean', del.bind(null, ['build/*', '!build/.git'], {dot: true}));
