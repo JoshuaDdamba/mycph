@@ -1,0 +1,16 @@
+element.style {
+}
+*, body, button, html, input, select, textarea {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html {
+  height: 100vh;
+}
+*, body, button, html, input, select, textarea {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+user agent stylesheethtml {
+  display: block;
+}

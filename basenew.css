@@ -1,15 +1,4 @@
-#map {
-  position:absolute;
-  top: 150px;
-  left: 100px;
-  right:0;
-  bottom:0;
-  width:580px;
-  height:580px;
-}
-
 #container {
-  position:absolute;
     width:auto;
     margin: auto;
     border-right: 1px solid #000;
@@ -27,7 +16,6 @@
 
 #navigation {
     margin: 0;
-    left: 150px;
     padding:10px 10px 10px 20px;
     float: right;
     height: 100%;
@@ -39,4 +27,14 @@
     padding:10px 20px;
     margin:0;
 
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 800px;
+  height: 800px;
 }
